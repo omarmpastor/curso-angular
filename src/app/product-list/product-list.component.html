@@ -1,0 +1,17 @@
+<div class="container" *ngIf="products$ | async as prods; else loading">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let p of prods">
+      <div class="card">
+        <img [src]="p.thumbnail" class="card-img-top" [alt]="p.name">
+        <div class="card-body">
+          <p class="card-title">{{ p.name }}</p>
+          <h5 class="card-text">{{ p.price | currency:'EUR' }}</h5>
+          <a href="#" class="btn btn-outline-primary btn-sm">Añadir al carrito</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  Leyendo componentes....
+</ng-template>
