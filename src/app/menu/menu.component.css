@@ -1,0 +1,16 @@
+.button-bag {
+    margin: -1rem 2rem;
+    /*margin-left: auto;*/
+    background-color: transparent;
+    border: 0;
+}
+
+.button-bag i {
+    font-size: 2rem;
+    color: white;
+    margin: -1rem;
+}
+
+.button-bag i:hover {
+    color: rgb(161, 193, 251);
+}
