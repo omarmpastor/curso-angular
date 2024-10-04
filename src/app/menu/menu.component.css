@@ -1,3 +1,11 @@
+.button-user {
+    font-size: 2rem;
+    margin: -1rem 1rem;
+}
+
+.dropdown-menu {
+}
+
 .button-bag {
     margin: -1rem 2rem;
     /*margin-left: auto;*/
