@@ -1,0 +1,10 @@
+<div class="container" *ngIf="product$ | async as prod; else errorOrloading">
+    <app-product-form [product]="prod" (emitProduct)="productModified($event)"/>
+  </div>
+  
+  <ng-template #errorOrloading>
+    <section *ngIf="hasError; else loader" class="alert alert-danger m-1 mt-3" role="alert">
+      Ha habido un error al cargar la página, vuelve a intentarlo de nuevo..
+    </section>
+  <ng-template #loader>Leyendo producto....</ng-template>
+  </ng-template>

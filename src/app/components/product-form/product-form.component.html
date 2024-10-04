@@ -1,0 +1,28 @@
+<form class="row g-3" #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="col-md-12" [hidden]="product.id < 1">
+    <div class="col-md-2">
+      <div class="input-group">
+        <span class="input-group-text">Id</span>
+        <input type="number" class="form-control" id="idInput" disabled name="id" [(ngModel)]="product.id"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <label for="nameInput">Nombre</label>
+    <input type="text" class="form-control" id="nameInput" name="name" [(ngModel)]="product.name" required/>
+  </div>
+  <div class="col-md-3">
+    <label for="priceInput">Precio</label>
+    <div class="input-group">
+      <input type="number" class="form-control" id="priceInput" name="price" [(ngModel)]="product.price" required/>
+      <span class="input-group-text">€</span>
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="photoInput">URL de una foto del producto</label>
+    <input type="text" class="form-control" id="photoInput" name="thumbnail" [(ngModel)]="product.thumbnail" required/>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">{{ product.id < 1?'Crear':'Modificar' }}</button>
+  </div>
+</form>
