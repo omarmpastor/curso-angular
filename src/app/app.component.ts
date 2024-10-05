@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ProductNewComponent } from './components/product-new/product-new.component';
+//import { ProductListComponent } from './product-list/product-list.component';
+// import { ProductEditComponent } from './components/product-edit/product-edit.component';
+// import { LoginComponent } from './login/login.component';
 
 
 @Component({
@@ -9,9 +12,11 @@ import { MenuComponent } from './menu/menu.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    ProductListComponent,
-    MenuComponent
-//    LoginComponent,
+    MenuComponent,
+    // ProductEditComponent,
+    // ProductListComponent,
+    // LoginComponent,
+    ProductNewComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
