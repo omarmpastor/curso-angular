@@ -1,5 +1,10 @@
 <div class="container" *ngIf="products$ | async as prods; else errorOrloading">
   <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="position-fixed buttom-0 end-0 text-end">
+      <a class="btn btn-primary" role="button" [routerLink]="['/product-new']" routerLinkActive="active">
+        <i class="bi bi-plus-circle"></i>
+      </a>
+    </div>
     <div class="col" *ngFor="let p of prods">
       <div class="card">
         <img [src]="p.thumbnail" class="card-img-top" [alt]="p.name">
@@ -11,7 +16,7 @@
             <button href="#" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i> Editar producto</button>
           </div-->
           <div class="text-end">
-            <button href="#" class="btn btn-outline-primary btn-sm text-end"><i class="bi bi-pencil"></i> Editar producto</button>
+            <button [routerLink]="['/product-edit', p.id]" routerLinkActive="active" class="btn btn-outline-primary btn-sm text-end"><i class="bi bi-pencil"></i> Editar producto</button>
           </div>
         </div>
       </div>

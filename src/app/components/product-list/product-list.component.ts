@@ -3,11 +3,12 @@ import { ProductsService } from '../../services/products.service';
 import { IProduct } from '../../interfaces/iproduct';
 import { catchError, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
