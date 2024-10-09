@@ -26,4 +26,8 @@ export class AuthService {
   get user(): IUser | undefined {
     return this._user;
   }
+
+  logout(): void {
+    this._user = undefined;
+  }
 }

@@ -13,7 +13,8 @@
             <i class="bi bi-person-vcard-fill"></i>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/login" routerLinkActive="active">Login</a></li>
+            <li><a class="dropdown-item" routerLink="/login" *ngIf="!user">Login</a></li>
+            <li><a class="dropdown-item" (click)="logout()" *ngIf="user">Desconectar</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Configuracion</a></li>
           </ul>
