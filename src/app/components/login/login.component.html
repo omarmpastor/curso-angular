@@ -1,0 +1,22 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="inputUsername">Username</label>
+    <input type="text" class="form-control" formControlName="username" minlength="3" required>
+    <div class="invalid-feedback">El usuario tiene que tener al menos 3 caracteres</div>
+  </div>
+  <div class="form-group mt-1">
+    <label for="inputPassword">Password</label>
+    <input type="password" class="form-control" formControlName="password" minlength="4" required>
+    <div class="invalid-feedback">El password tiene que tener al menos 4 caracteres</div>
+  </div>
+  <div class="form-group mt-2 d-flex justify-content-start">
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+  </div>
+
+</form>
+
+@if (hasError) {
+  <div class="alert alert-danger m-1 mt-3" role="alert">
+    Usuario o contraseña incorrectos
+  </div>  
+}
