@@ -1,6 +1,20 @@
-<main class="main">
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+      <!-- <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark-subtle"> -->
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 text-bg-dark">
+        <app-side-menu/>
+      </div>
+      <div class="col py-3">
+        <router-outlet />
+      </div>
+  </div>
+</div>
+
+
+<!-- <main class="main">
   <app-navbar/>
+  <app-side-menu/>
   <div class="container mt-2">
     <router-outlet />
   </div>
-</main>
+</main> -->

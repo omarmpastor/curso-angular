@@ -27,4 +27,14 @@ export class AlbumListComponent {
   ngOnInit(): void {
     this.albumService.get()
   }
+
+  getGenre(album: IDisco): string {
+    if(!Array.isArray(album.genero)) {
+      return album.genero.nombre;
+    }
+
+    const genres: string[] = album.genero.map(g => g.nombre);
+
+    return genres.length === 0?'-':genres.join(',');
+  }
 }

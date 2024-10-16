@@ -1,12 +1,37 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { IUser } from '../../interfaces/iuser';
+import { AuthService } from '../../services/auth.service';
+import { MusicalGenreService } from '../../services/musical-genre.service';
+import { Observable } from 'rxjs';
+import { IGenero } from '../../interfaces/igenero';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-side-menu',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterModule,
+    CommonModule
+  ],
   templateUrl: './side-menu.component.html',
   styleUrl: './side-menu.component.css'
 })
 export class SideMenuComponent {
+  genres$!: Observable<IGenero[]>;
 
+  constructor(
+    private authService: AuthService,
+    musicalGenreService: MusicalGenreService
+  ) {
+    this.genres$ = musicalGenreService.get();
+  }
+
+  get user(): IUser | undefined {
+    return this.authService.user;
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
 }

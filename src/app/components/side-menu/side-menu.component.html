@@ -1,1 +1,131 @@
-<p>side bar</p>
+<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+  <a routerLink="/" class="d-flex align-items-center pb-3 mb-md-0 mb-lg-3 me-md-auto text-white text-decoration-none">
+    <i class="fs-2 bi-music-note-beamed"></i> &nbsp;&nbsp;<span class="fs-5 d-none d-sm-inline">Música (Curso)</span>
+  </a>
+  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start border-top w-100"
+    id="menu">
+    <li class="nav-item">
+      <a href="#" class="nav-link align-middle px-0 text-white">
+        <i class="fs-4 bi-vinyl"></i> <span class="ms-1 d-none d-sm-inline">Discos</span>
+      </a>
+    </li>
+    @if(genres$ | async; as genres) {
+    <li>
+      <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+        <i class="fs-4 bi-music-note-list"></i> <span class="ms-1 d-none d-sm-inline">Géneros musicales</span>&nbsp;<i
+          class="bi bi-chevron-down"></i></a>
+      <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+        @for (genre of genres; track genre.nombre) {
+        <li class="w-100">
+          <a routerLink="/" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">{{ genre.nombre }}</span>
+          </a>
+        </li>
+        }
+      </ul>
+    </li>
+    }
+    <hr>
+    <!-- <li>
+      <a href="#" class="nav-link px-0 align-middle">
+        <i class="fs-4 bi-cart m-1"></i> <span class="ms-1 d-none d-sm-inline">Carrito</span> </a>
+    </li> -->
+    <hr>
+    <!-- <li class="nav-item">
+          <a href="#" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+          </a>
+      </li> -->
+    <!-- <li>
+          <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
+          <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+              <li class="w-100">
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+              </li>
+              <li>
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
+              </li>
+          </ul>
+      </li> -->
+    <!-- <li>
+          <a href="#" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+      </li> -->
+    <!-- <li>
+          <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+              <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
+          <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+              <li class="w-100">
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+              </li>
+              <li>
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+              </li>
+          </ul>
+      </li> -->
+    <!-- <li>
+          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+              <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+              <li class="w-100">
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
+              </li>
+              <li>
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+              </li>
+              <li>
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
+              </li>
+              <li>
+                  <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
+              </li>
+          </ul>
+      </li> -->
+    <!-- <li>
+          <a href="#" class="nav-link px-0 align-middle">
+              <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
+      </li> -->
+  </ul>
+  @if (user) {
+  <div class="nav-item m-1 mb-4">
+    <a href="#" class="nav-link align-middle px-0 text-white">
+      <i class="fs-4 bi-plus-square"></i> <span class="ms-1 d-none d-sm-inline">Nuevo disco</span>
+    </a>
+  </div>
+  <div class="pb-2 pt-2 w-100">
+    <a routerLink="/" class="nav-link px-0 align-middle text-white">
+      <i class="fs-4 bi-cart m-1"></i> <span class="ms-1 d-none d-sm-inline">Carrito</span>
+    </a>
+  </div>
+  }
+
+  <hr>
+  <div class="dropdown pb-4 pt-4 w-100 border-top">
+    <a href="#" class="d-flex align-items-center  text-decoration-none dropdown-toggle text-white" id="dropdownUser1"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      <span class="rounded-circle m-1">
+        <svg class="bi" width="32" height="32" fill="currentColor">
+          <use xlink:href="bootstrap-icons.svg#person-circle" />
+        </svg>
+      </span>
+      <span class="d-none d-sm-inline mx-1">
+        {{ user?user.username:'Login' }}
+      </span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+      @if (user) {
+      <li><a class="dropdown-item" href="#">Perfil</a></li>
+      <li><a class="dropdown-item" href="#">Cambiar password</a></li>
+      <li><a class="dropdown-item" href="#">Direcciones</a></li>
+      <li><a class="dropdown-item" href="#">Pedidos</a></li>
+      <li><a class="dropdown-item" href="#">Métodos de pago</a></li>
+      <li>
+        <hr class="dropdown-divider">
+      </li>
+      <li><a class="dropdown-item" href="#" (click)="logout()">Desconectar</a></li>
+      } @else {
+      <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+      }
+    </ul>
+  </div>
+</div>

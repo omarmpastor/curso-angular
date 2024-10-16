@@ -1,25 +1,18 @@
 import { Injectable } from '@angular/core';
 import dbjson from '../../mocks/db.json'
 import { delay, Observable, of } from 'rxjs';
-import { IDisco } from '../interfaces/idisco';
+import { IGenero } from '../interfaces/igenero';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlbumService {
+export class MusicalGenreService {
 
   constructor() { }
 
-  get(): Observable<IDisco[]> {
-    const albums$ = of(dbjson.discos);
+  get(): Observable<IGenero[]> {
+    const albums$ = of(dbjson.generos);
 
     return albums$.pipe(delay(300));
   }
-
-  getOnly() { }
-  add() {}
-  update() {}
-  remove() {}
 }
-
-

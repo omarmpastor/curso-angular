@@ -2,7 +2,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="inputUsername">Username</label>
-      <input type="text" class="form-control" formControlName="username" minlength="3" required>
+      <input type="text" class="form-control" formControlName="username" minlength="3" autofocus required>
       <div class="invalid-feedback">El usuario tiene que tener al menos 3 caracteres</div>
     </div>
     <div class="form-group mt-1">
