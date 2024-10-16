@@ -3,12 +3,11 @@
     margin: -1rem 1rem;
 }
 
-/*
-ul .dropdown-menu.show {
-    border: 1px solid red;
+ul.navbar-nav {
+    /* border: 1px solid red; */
+    width: 10rem;
 }
 
-*/
 
 .button-bag {
     margin: -1rem 2rem;

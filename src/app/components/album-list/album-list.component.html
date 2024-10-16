@@ -1,3 +1,44 @@
 @if(albums$ | async; as albums) {
-    <pre>{{ albums | json }}</pre>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="position-fixed buttom-0 end-0 text-end">
+    <a class="btn btn-primary" role="button" [routerLink]="['/']">
+      <i class="bi bi-plus-circle"></i>
+    </a>
+  </div>
+  @for (album of albums; track album.id) {
+  <div class="col">
+    <div class="card">
+      @if (album?.foto) {
+      <img [src]="album.foto" class="card-img-top" [alt]="album.nombre">
+      } @else {
+      <span class="card-img-top m-2">
+        <svg class="bi" width="128" height="128" fill="gray">
+          <use xlink:href="bootstrap-icons.svg#file-music" />
+        </svg>
+      </span>
+      }
+      <div class="card-body">
+        <p class="card-title">{{ album.nombre }}</p>
+        <h5 class="card-text">{{ album.precio | currency:'EUR' }}</h5>
+        <div class="d-flex justify-content-between">
+          <button [routerLink]="['/']" class="btn btn-outline-primary btn-sm"><i class="bi bi-bag-plus"></i> Añadir al
+            carrito</button>
+          <button [routerLink]="['/']" class="btn btn-outline-primary btn-sm text-end">
+            <i class="bi bi-search"></i> Ver
+          </button>
+        </div>
+        <!-- <div class="text-end">
+          <button [routerLink]="['/']" class="btn btn-outline-primary btn-sm text-end">
+            <i class="bi bi-search"></i> Ver
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  } @empty {
+  <li>No hay discos.</li>
+  }
+
+</div>
 }
