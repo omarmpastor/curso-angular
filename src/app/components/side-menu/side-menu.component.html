@@ -5,7 +5,7 @@
   <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start border-top w-100"
     id="menu">
     <li class="nav-item">
-      <a href="#" class="nav-link align-middle px-0 text-white">
+      <a [routerLink]="['/']" (click)="filterGendre('')" class="nav-link align-middle px-0 text-white">
         <i class="fs-4 bi-vinyl"></i> <span class="ms-1 d-none d-sm-inline">Discos</span>
       </a>
     </li>
@@ -15,9 +15,13 @@
         <i class="fs-4 bi-music-note-list"></i> <span class="ms-1 d-none d-sm-inline">Géneros musicales</span>&nbsp;<i
           class="bi bi-chevron-down"></i></a>
       <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+        <li class="w-100">
+          <a [routerLink]="['/']" (click)="filterGendre('')" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">TODOS</span>
+          </a>
+        </li>
         @for (genre of genres; track genre.nombre) {
         <li class="w-100">
-          <a routerLink="/" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">{{ genre.nombre }}</span>
+          <a [routerLink]="['/']" (click)="filterGendre(genre.nombre)" class="nav-link px-0 text-white"> <span class="d-none d-sm-inline">{{ genre.nombre }}</span>
           </a>
         </li>
         }

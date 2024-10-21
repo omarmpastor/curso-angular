@@ -19,13 +19,19 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
 })
 export class AlbumListComponent {
   albums$!: Observable<IDisco[]>;
+  onFilterGeneroEvent$!: Observable<string>;
+  limitAlbumsPerPage: number = 8;
+  numberOfPage: number = 0;
 
   constructor(private albumService: AlbumService) {
-    this.albums$ = albumService.get();
-  }
+    this.albums$ = albumService.get(this.numberOfPage,this.limitAlbumsPerPage);
 
-  ngOnInit(): void {
-    this.albumService.get()
+    albumService.onFilterGeneroEvent.subscribe(
+      gendre => {
+        this.numberOfPage = 0;
+        this.albums$ = albumService.get(this.numberOfPage,this.limitAlbumsPerPage);
+      }
+    );
   }
 
   getGenre(album: IDisco): string {

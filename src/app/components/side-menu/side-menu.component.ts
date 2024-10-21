@@ -6,6 +6,7 @@ import { MusicalGenreService } from '../../services/musical-genre.service';
 import { Observable } from 'rxjs';
 import { IGenero } from '../../interfaces/igenero';
 import { CommonModule } from '@angular/common';
+import { AlbumService } from '../../services/album.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -22,6 +23,7 @@ export class SideMenuComponent {
 
   constructor(
     private authService: AuthService,
+    private albumService: AlbumService,
     musicalGenreService: MusicalGenreService
   ) {
     this.genres$ = musicalGenreService.get();
@@ -33,5 +35,9 @@ export class SideMenuComponent {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  filterGendre(gendre: string): void {
+    this.albumService.emitFilterGenero(gendre);
   }
 }
