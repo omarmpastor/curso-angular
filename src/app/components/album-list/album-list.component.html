@@ -23,9 +23,9 @@
         <p class="card-text"><small class="text-muted">{{ getGenre(album) }}</small></p>
         <h6 class="card-text">{{ album.precio | currency:'EUR' }}</h6>
         <div class="d-flex justify-content-between">
-          <button [routerLink]="['/']" class="btn btn-outline-primary btn-sm"><i class="bi bi-bag-plus"></i> Añadir al
+          <button [routerLink]="['/']" (click)="addToCart(album)" class="btn btn-outline-primary btn-sm"><i class="bi bi-bag-plus"></i> Añadir al
             carrito</button>
-          <button [routerLink]="['/']" class="btn btn-outline-primary btn-sm text-end">
+          <button [routerLink]="['/album',album.id]" class="btn btn-outline-primary btn-sm text-end">
             <i class="bi bi-search"></i> Ver
           </button>
         </div>
@@ -41,5 +41,16 @@
   <li>No hay discos.</li>
   }
 
+</div>
+<div class="m-5 d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination text-secondary">
+      <li class="page-item"><a class="page-link" [routerLink]="['/']">Previous</a></li>
+      <li class="page-item"><a class="page-link" [routerLink]="['/']">1</a></li>
+      <li class="page-item"><a class="page-link" [routerLink]="['/']">2</a></li>
+      <li class="page-item"><a class="page-link" [routerLink]="['/']">3</a></li>
+      <li class="page-item"><a class="page-link" [routerLink]="['/']">Next</a></li>
+    </ul>
+  </nav>
 </div>
 }

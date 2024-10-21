@@ -5,6 +5,7 @@ import { IDisco } from '../../interfaces/idisco';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-album-list',
@@ -23,7 +24,10 @@ export class AlbumListComponent {
   limitAlbumsPerPage: number = 8;
   numberOfPage: number = 0;
 
-  constructor(private albumService: AlbumService) {
+  constructor(
+    private albumService: AlbumService,
+    private cartService: CartService,
+  ) {
     this.albums$ = albumService.get(this.numberOfPage,this.limitAlbumsPerPage);
 
     albumService.onFilterGeneroEvent.subscribe(
@@ -42,5 +46,9 @@ export class AlbumListComponent {
     const genres: string[] = album.genero.map(g => g.nombre);
 
     return genres.length === 0?'-':genres.join(',');
+  }
+
+  addToCart(album: IDisco) {
+    this.cartService.add(album);
   }
 }

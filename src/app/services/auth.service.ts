@@ -8,13 +8,18 @@ import { IUser } from '../interfaces/iuser';
 export class AuthService {
   private _user: IUser | undefined;
 
-  constructor() { }
+  constructor() {
+    const strUser = localStorage.getItem('userLogin');//userLogin
+
+    if(strUser) this._user = JSON.parse(strUser);
+  }
 
   login(username: string, password: string): Observable<boolean> {
     const loginOk = username === 'omar' && password === '1234';
     
     if(loginOk) {
       this._user = { username: 'omar', age: 43 };
+      localStorage.setItem('userLogin', JSON.stringify(this._user));
     }
     
     return of(loginOk).pipe(delay(300));
@@ -26,5 +31,6 @@ export class AuthService {
 
   logout(): void {
     this._user = undefined;
+    localStorage.removeItem('userLogin');
   }
 }

@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, OnInit, Output } from '@angular/core';
-import dbjson from '../../mocks/db.json'
+//import dbjson from '../../mocks/db.json'
 import { delay, Observable, of } from 'rxjs';
 import { IDisco } from '../interfaces/idisco';
 import { AppGlobalConstants } from '../app.constants';
@@ -9,14 +9,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AlbumService {
-  @Output() onFilterGeneroEvent = new EventEmitter<string>();
-  
   BASE_URL: string = AppGlobalConstants.SERVER_API_URL;
-  ALL_DISCOS_URL:string = this.BASE_URL + '/discos?_start=:start&_limit=:limit';
+  DISCOS_URL:string = this.BASE_URL + '/discos';
+  ALL_DISCOS_URL:string = this.DISCOS_URL + '?_start=:start&_limit=:limit';
+  DISCO_FROM_ID_URL: string = this.DISCOS_URL + '/:id';
+  
+  @Output() onFilterGeneroEvent = new EventEmitter<string>();  
   gendre: string = '';
 
-  // http://localhost:3000/discos?genero.nombre=ROCK
-  // http://localhost:3000/discos?_start=10&_limit=10
   constructor(private http: HttpClient) { }
 
   emitFilterGenero(gendre: string) {
@@ -31,6 +31,22 @@ export class AlbumService {
     return this.http.get<IDisco[]>(url);
   }
 
+  getOnly(id: number): Observable<IDisco> {
+    return this.http.get<IDisco>(this.DISCO_FROM_ID_URL.replace(':id',String(id)));
+  }
+
+  add(disco: IDisco): Observable<IDisco> {
+    return this.http.post<IDisco>(this.DISCOS_URL, disco);
+  }
+
+  update(id: number, disco: IDisco): Observable<IDisco> {
+    return this.http.put<IDisco>(this.DISCO_FROM_ID_URL.replace(':id',String(id)), disco);
+  }
+
+  remove(id: number) {
+    return this.http.delete(this.DISCO_FROM_ID_URL.replace(':id',String(id)));
+  }
+
   /*
   get(start:number, limit:number): Observable<IDisco[]> {
     const albums$ = of(dbjson.discos);
@@ -38,11 +54,6 @@ export class AlbumService {
     return albums$.pipe(delay(300));
   }
   */
-
-  getOnly() { }
-  add() {}
-  update() {}
-  remove() {}
 }
 
 

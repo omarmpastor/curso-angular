@@ -98,7 +98,10 @@
   </div>
   <div class="pb-2 pt-2 w-100">
     <a routerLink="/" class="nav-link px-0 align-middle text-white">
-      <i class="fs-4 bi-cart m-1"></i> <span class="ms-1 d-none d-sm-inline">Carrito</span>
+      <i class="fs-4 bi-cart m-1"></i> <span class="ms-1 d-none d-sm-inline">Carrito </span>
+      @if(amountcartItems > 0) {
+        <span class="badge bg-danger">{{ amountcartItems }}</span>
+      }
     </a>
   </div>
   }

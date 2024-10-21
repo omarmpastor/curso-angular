@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { IGenero } from '../../interfaces/igenero';
 import { CommonModule } from '@angular/common';
 import { AlbumService } from '../../services/album.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -23,6 +24,7 @@ export class SideMenuComponent {
 
   constructor(
     private authService: AuthService,
+    private cartService: CartService,
     private albumService: AlbumService,
     musicalGenreService: MusicalGenreService
   ) {
@@ -31,6 +33,10 @@ export class SideMenuComponent {
 
   get user(): IUser | undefined {
     return this.authService.user;
+  }
+
+  get amountcartItems(): number {
+    return this.cartService.albums.length;
   }
 
   logout(): void {
