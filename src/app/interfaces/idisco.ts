@@ -1,5 +1,6 @@
 import { IAutor } from "./iautor";
 import { IGenero } from "./igenero";
+import { IPista } from "./ipista";
 
 export interface IDisco {
     id: string;
@@ -11,4 +12,5 @@ export interface IDisco {
     foto: string | null;
     autor: IAutor;
     genero: IGenero | IGenero[];
+    pistas?: IPista[];
 }

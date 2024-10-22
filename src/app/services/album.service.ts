@@ -32,7 +32,7 @@ export class AlbumService {
   }
 
   getOnly(id: number): Observable<IDisco> {
-    return this.http.get<IDisco>(this.DISCO_FROM_ID_URL.replace(':id',String(id)));
+    return this.http.get<IDisco>(this.DISCO_FROM_ID_URL.replace(':id',String(id)) + '?_embed=pistas');
   }
 
   add(disco: IDisco): Observable<IDisco> {

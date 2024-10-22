@@ -9,8 +9,10 @@ export class CartService {
 
   constructor() { }
 
-  add(album: IDisco) {
-    this._albums.push(album);
+  add(album: IDisco, amount: number = 1) {
+    for (let i = 0; i < amount; i++) {
+      this._albums.push(album);
+    }
   }
 
   remove(album: IDisco, amount: number = 1) {
