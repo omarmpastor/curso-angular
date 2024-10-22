@@ -23,8 +23,13 @@
         <p class="card-text"><small class="text-muted">{{ getGenre(album) }}</small></p>
         <h6 class="card-text">{{ album.precio | currency:'EUR' }}</h6>
         <div class="d-flex justify-content-between">
-          <button [routerLink]="['/']" (click)="addToCart(album)" class="btn btn-outline-primary btn-sm"><i class="bi bi-bag-plus"></i> Añadir al
-            carrito</button>
+          @if(isUserLogin) {
+          <button [routerLink]="['/']" (click)="addToCart(album)" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-bag-plus"></i> Añadir al carrito
+          </button>
+          } @else {
+            <div>&nbsp;</div>
+          }
           <button [routerLink]="['/album',album.id]" class="btn btn-outline-primary btn-sm text-end">
             <i class="bi bi-search"></i> Ver
           </button>

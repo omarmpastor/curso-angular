@@ -6,6 +6,7 @@ import { IDisco } from '../../interfaces/idisco';
 import { AlbumService } from '../../services/album.service';
 import { CartService } from '../../services/cart.service';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-album-detail',
@@ -25,6 +26,7 @@ export class AlbumDetailComponent {
     private route: ActivatedRoute,
     private albumService: AlbumService,
     private cartService: CartService,
+    private authService:AuthService,
   ) {
     this.route.paramMap.subscribe(params => {
       this.album$ = this.albumService.getOnly(Number(params.get('id')));
@@ -44,6 +46,10 @@ export class AlbumDetailComponent {
   addToCart(album: IDisco) {
     this.cartService.add(album, this.amountToAddCart);
     this.amountToAddCart = 1;
+  }
+
+  get isUserLogin(): boolean {
+    return this.authService.user !== undefined;
   }
 
 }

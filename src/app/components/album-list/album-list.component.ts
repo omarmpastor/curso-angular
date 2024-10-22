@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-album-list',
@@ -13,7 +14,7 @@ import { CartService } from '../../services/cart.service';
   imports: [
     CommonModule,
     RouterModule,
-    SideMenuComponent
+    SideMenuComponent,
   ],
   templateUrl: './album-list.component.html',
   styleUrl: './album-list.component.css'
@@ -25,8 +26,9 @@ export class AlbumListComponent {
   numberOfPage: number = 0;
 
   constructor(
-    private albumService: AlbumService,
+    albumService: AlbumService,
     private cartService: CartService,
+    private authService:AuthService,
   ) {
     this.albums$ = albumService.get(this.numberOfPage,this.limitAlbumsPerPage);
 
@@ -50,5 +52,9 @@ export class AlbumListComponent {
 
   addToCart(album: IDisco) {
     this.cartService.add(album);
+  }
+
+  get isUserLogin(): boolean {
+    return this.authService.user !== undefined;
   }
 }
