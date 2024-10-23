@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideMenuComponent } from './side-menu.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../../app.routes';
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent;
@@ -8,7 +11,11 @@ describe('SideMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideMenuComponent]
+      imports: [SideMenuComponent],
+      providers: [
+        provideHttpClient(),
+        provideRouter(routes)
+      ]
     })
     .compileComponents();
 

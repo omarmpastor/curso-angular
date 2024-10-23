@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlbumListComponent } from './album-list.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('AlbumListComponent', () => {
   let component: AlbumListComponent;
@@ -8,7 +9,10 @@ describe('AlbumListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AlbumListComponent]
+      imports: [AlbumListComponent],
+      providers: [
+        provideHttpClient()
+      ]
     })
     .compileComponents();
 

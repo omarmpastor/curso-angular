@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AlbumService } from './album.service';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('AlbumService', () => {
   let service: AlbumService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(),
+        //provideHttpClientTesting()
+      ]
+    });
     service = TestBed.inject(AlbumService);
   });
 
