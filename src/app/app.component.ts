@@ -12,6 +12,4 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  //title = 'tienda-musica';
-}
+export class AppComponent { }

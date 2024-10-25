@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 //import dbjson from '../../mocks/db.json'
-import { delay, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IGenero } from '../interfaces/igenero';
 import { HttpClient } from '@angular/common/http';
 import { AppGlobalConstants } from '../app.constants';

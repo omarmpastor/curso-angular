@@ -7,5 +7,5 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'album', component: AlbumListComponent },
     { path: 'album/:id', component: AlbumDetailComponent },
-    { path: '', redirectTo: '/album', pathMatch: 'full' }
+    { path: '**', redirectTo: '/album', pathMatch: 'full'}
 ];
