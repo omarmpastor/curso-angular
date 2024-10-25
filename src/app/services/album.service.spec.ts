@@ -6,7 +6,7 @@ import { IDisco } from '../interfaces/idisco';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { AppGlobalConstants } from '../app.constants';
 
-const albumsMock: IDisco[] = [
+const dummyAlbums: IDisco[] = [
   {
     "id": "1",
     "autor": {
@@ -52,8 +52,7 @@ const albumsMock: IDisco[] = [
 describe('AlbumService', () => {
   let service: AlbumService;
   let httpMock: HttpTestingController;
-  let dummyAlbums: IDisco[];
-
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -63,7 +62,6 @@ describe('AlbumService', () => {
     });
     service = TestBed.inject(AlbumService);
     httpMock = TestBed.inject(HttpTestingController);
-    dummyAlbums =  Array.from(albumsMock);
   });
 
   it('should be created', () => {
@@ -83,11 +81,12 @@ describe('AlbumService', () => {
   });
 
   it('should make a GET request and return album form id', () => {
-    const id = 1;
-    const dummyAlbum = dummyAlbums.find(a => a.id === String(id));
-    if(!dummyAlbum) { fail(`Album with id ${id} not found`); return; }
+    const id = "1";
+    const dummyAlbum = dummyAlbums.find(a => a.id == id);
+    if(dummyAlbum === undefined) { fail(`Album with id ${id} not found`); console.log(dummyAlbums);
+     return; }
 
-    service.getOnly(id).subscribe(data => {
+    service.getOnly(Number(id)).subscribe(data => {
       expect(data).toEqual(dummyAlbum);
     });
     const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + `/discos/${id}?_embed=pistas`);
@@ -96,7 +95,7 @@ describe('AlbumService', () => {
   });
 
   it('should send album a POST request and return created album', () => {
-    let dummyAlbum = dummyAlbums[0];
+    let dummyAlbum = {...dummyAlbums[0]};
     dummyAlbum.id = String(dummyAlbums.length + 1);
 
     service.add(dummyAlbum).subscribe(data => {
@@ -132,14 +131,3 @@ describe('AlbumService', () => {
 
   afterEach(() => { httpMock.verify() });
 });
-
-
-/*
-get(start:number, limit:number): Observable<IDisco[]> {
-getOnly(id: number): Observable<IDisco> {
-add(disco: IDisco): Observable<IDisco> {
-update(id: number, disco: IDisco): Observable<IDisco> {
-remove(id: number) {
-
-
-*/

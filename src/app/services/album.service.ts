@@ -1,6 +1,5 @@
-import { EventEmitter, Injectable, OnInit, Output } from '@angular/core';
-//import dbjson from '../../mocks/db.json'
-import { delay, Observable, of } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IDisco } from '../interfaces/idisco';
 import { AppGlobalConstants } from '../app.constants';
 import { HttpClient } from '@angular/common/http';
@@ -14,14 +13,14 @@ export class AlbumService {
   ALL_DISCOS_URL:string = this.DISCOS_URL + '?_start=:start&_limit=:limit';
   DISCO_FROM_ID_URL: string = this.DISCOS_URL + '/:id';
   
-  @Output() onFilterGeneroEvent = new EventEmitter<string>();  
+  onFilterGeneroEvent$ = new EventEmitter<string>();
   gendre: string = '';
 
   constructor(private http: HttpClient) { }
 
   emitFilterGenero(gendre: string) {
     this.gendre = gendre;
-    this.onFilterGeneroEvent.emit(gendre);
+    this.onFilterGeneroEvent$.emit(gendre);
   }
 
   get(start:number, limit:number): Observable<IDisco[]> {

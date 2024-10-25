@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlbumService } from '../../services/album.service';
 import { Observable } from 'rxjs';
 import { IDisco } from '../../interfaces/idisco';
@@ -19,23 +19,24 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './album-list.component.html',
   styleUrl: './album-list.component.css'
 })
-export class AlbumListComponent {
+export class AlbumListComponent implements OnInit {
   albums$!: Observable<IDisco[]>;
   onFilterGeneroEvent$!: Observable<string>;
   limitAlbumsPerPage: number = 8;
   numberOfPage: number = 0;
 
   constructor(
-    albumService: AlbumService,
+    private albumService: AlbumService,
     private cartService: CartService,
     private authService:AuthService,
-  ) {
-    this.albums$ = albumService.get(this.numberOfPage,this.limitAlbumsPerPage);
+  ) { }
 
-    albumService.onFilterGeneroEvent.subscribe(
-      gendre => {
+  ngOnInit(): void {
+    this.albums$ = this.albumService.get(this.numberOfPage, this.limitAlbumsPerPage);
+
+    this.albumService.onFilterGeneroEvent$.subscribe(() => {
         this.numberOfPage = 0;
-        this.albums$ = albumService.get(this.numberOfPage,this.limitAlbumsPerPage);
+        this.albums$ = this.albumService.get(this.numberOfPage, this.limitAlbumsPerPage);
       }
     );
   }

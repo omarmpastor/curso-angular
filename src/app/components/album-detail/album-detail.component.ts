@@ -18,7 +18,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './album-detail.component.html',
   styleUrl: './album-detail.component.css'
 })
-export class AlbumDetailComponent {
+export class AlbumDetailComponent implements OnInit {
   album$!: Observable<IDisco>;
   amountToAddCart: number = 1;
 
@@ -27,7 +27,9 @@ export class AlbumDetailComponent {
     private albumService: AlbumService,
     private cartService: CartService,
     private authService:AuthService,
-  ) {
+  ) { }
+
+  ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.album$ = this.albumService.getOnly(Number(params.get('id')));
     });
