@@ -47,7 +47,7 @@ describe('AlbumDetailComponent', () => {
       providers: [
         provideHttpClient(),
         provideRouter(routes),
-        {provide: AlbumService, useValue: spy}
+        { provide: AlbumService, useValue: spy }
       ]
     })
       .compileComponents();
