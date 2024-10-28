@@ -3,7 +3,7 @@ import { MusicalGenreService } from './musical-genre.service';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { IGenero } from '../interfaces/igenero';
-import { AppGlobalConstants } from '../app.constants';
+//import { AppGlobalConstants } from '../app.constants';
 
 const dummyGenres: IGenero[] = [
   {
@@ -46,9 +46,10 @@ describe('MusicalGenreService', () => {
     service.get().subscribe(data => {
       expect(data).toEqual(dummyGenres);
     });
-    const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + '/generos');
+    //const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + '/generos');
+    const req = httpMock.expectOne('http://localhost:4200/db.json');
     expect(req.request.method).toBe('GET');
-    req.flush(dummyGenres);
+    req.flush({generos: dummyGenres});
   });
 
   afterEach(() => { httpMock.verify() });
