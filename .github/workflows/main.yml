@@ -24,11 +24,12 @@ jobs:
       run: npm install
 
     - name: Build Angular App
-      run: ng build --prod --output-path=dist --base-href /tienda-musica/
+      run: ng build --configuration production 
 
 # Now add the step to deploy to gh-pages
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+    - name: Deploy to gh pages
+      run: |
+        npx angular-cli-ghpages --dir=dist/tienda-musica
+      env:
+        CI: true
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
