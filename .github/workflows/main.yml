@@ -24,7 +24,7 @@ jobs:
       run: npm install
 
     - name: Build Angular App
-      run: npm run build:prod
+      run: ng build --prod --output-path=dist --base-href /tienda-musica/
 
 # Now add the step to deploy to gh-pages
     - name: Deploy to GitHub Pages
