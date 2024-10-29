@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/tienda-musica",
+            "outputPath": "dist/curso-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -144,6 +144,9 @@
               "devServerTarget": "tienda-musica:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

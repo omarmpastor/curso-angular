@@ -1,0 +1,35 @@
+# main.yaml file and give it a name
+name: Build and Deploy Script
+# We want to do stuff when we push code to the main branch
+on:
+  push:
+    branches:
+      - main
+# The environment to run the actions must also be specified
+jobs:
+  build:
+    runs-on: ubuntu-latest
+# We want to install the necessary dependencies by running the necessary commands. Although first we must check the code from the repository.
+    steps:
+    
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+# Now we add node.js which we needed, we using node-version 18
+    - name: Adding Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18
+# Install the dependencies and build the app
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Angular App
+      run: npm run build:prod
+
+# Now add the step to deploy to gh-pages
+    - name: Deploy to gh pages
+      run: |
+        npx angular-cli-ghpages --dir=dist/curso-angular
+      env:
+        CI: true # means to clean install the app
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
