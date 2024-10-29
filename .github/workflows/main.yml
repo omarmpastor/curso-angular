@@ -24,7 +24,7 @@ jobs:
       run: npm install
 
     - name: Build Angular App
-      run: ng build --configuration production 
+      run: npm run build:prod
 
 # Now add the step to deploy to gh-pages
     - name: Deploy to gh pages
