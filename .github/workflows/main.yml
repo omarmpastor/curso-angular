@@ -28,8 +28,9 @@ jobs:
 
 # Now add the step to deploy to gh-pages
     - name: Deploy to gh pages
-      run: |
-        npx angular-cli-ghpages --dir=dist/curso-angular
+      run ng deploy --base-href=/curso-angular/
+      # run: |
+      #   npx angular-cli-ghpages --dir=dist/curso-angular
       env:
         CI: true # means to clean install the app
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
