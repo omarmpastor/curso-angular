@@ -50,7 +50,6 @@ const dummyAlbums: IDisco[] = [
 ];
 
 describe('AlbumService', () => {
-  let BASE_URL = AppGlobalConstants.SERVER_API_URL;
   let service: AlbumService;
   let httpMock: HttpTestingController;
   
@@ -82,17 +81,16 @@ describe('AlbumService', () => {
     req.flush({discos: dummyAlbums});
   });
 /*
-  it('should make a GET request and return album form id', () => {  
+  it('should make a GET request and return album form id', () => {
     const id = "1";
     const dummyAlbum = dummyAlbums.find(a => a.id == id);
-    if(dummyAlbum === undefined) { fail(`Album with id ${id} not found`);
+    if(dummyAlbum === undefined) { fail(`Album with id ${id} not found`); console.log(dummyAlbums);
      return; }
-     
+
     service.getOnly(Number(id)).subscribe(data => {
       expect(data).toEqual(dummyAlbum);
     });
-
-    //const req = httpMock.expectOne(BASE_URL + `/discos/${id}?_embed=pistas`);
+    //const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + `/discos/${id}?_embed=pistas`);
     const req = httpMock.expectOne('http://localhost:4200/db.json');
     expect(req.request.method).toBe('GET');
     req.flush(dummyAlbum);
@@ -106,7 +104,7 @@ describe('AlbumService', () => {
       expect(data).toEqual(dummyAlbum);
     });
 
-    const req = httpMock.expectOne(BASE_URL + `/discos`);
+    const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + `/discos`);
     expect(req.request.method).toBe('POST');
     req.flush(dummyAlbum);
   });
@@ -118,7 +116,7 @@ describe('AlbumService', () => {
       expect(data).toEqual(dummyAlbum);
     });
 
-    const req = httpMock.expectOne(BASE_URL + `/discos/${dummyAlbum.id}`);
+    const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + `/discos/${dummyAlbum.id}`);
     expect(req.request.method).toBe('PUT');
     req.flush(dummyAlbum);
   });
@@ -128,7 +126,7 @@ describe('AlbumService', () => {
     
     service.remove(Number(dummyAlbum.id)).subscribe(() => {});
 
-    const req = httpMock.expectOne(BASE_URL + `/discos/${dummyAlbum.id}`);
+    const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + `/discos/${dummyAlbum.id}`);
     expect(req.request.method).toBe('DELETE');
     req.flush(dummyAlbum);
   });

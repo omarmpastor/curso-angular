@@ -3,7 +3,7 @@ import { MusicalGenreService } from './musical-genre.service';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { IGenero } from '../interfaces/igenero';
-//import { AppGlobalConstants } from '../app.constants';
+import { AppGlobalConstants } from '../app.constants';
 
 const dummyGenres: IGenero[] = [
   {
