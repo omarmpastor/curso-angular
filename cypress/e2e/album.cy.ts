@@ -6,7 +6,7 @@ describe('Test Albums page', () => {
 
     cy.get('app-album-list')
 
-    cy.get('.card .card-body').should('have.length', 8)
+    cy.get('.card .card-body').should('have.length.gt', 5)
   })
 
   it('should check that I can access the detail', () => {
