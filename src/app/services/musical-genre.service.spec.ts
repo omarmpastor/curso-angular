@@ -47,7 +47,7 @@ describe('MusicalGenreService', () => {
       expect(data).toEqual(dummyGenres);
     });
     //const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL + '/generos');
-    const req = httpMock.expectOne('http://localhost:4200/db.json');
+    const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL);
     expect(req.request.method).toBe('GET');
     req.flush({generos: dummyGenres});
   });

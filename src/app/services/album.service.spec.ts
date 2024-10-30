@@ -76,7 +76,7 @@ describe('AlbumService', () => {
       expect(data).toEqual(dummyAlbums);
     });
     //const req = httpMock.expectOne(BASE_URL + `/discos?_start=${start}&_limit=${limit}`);
-    const req = httpMock.expectOne('http://localhost:4200/db.json');
+    const req = httpMock.expectOne(AppGlobalConstants.SERVER_API_URL);
     expect(req.request.method).toBe('GET');
     req.flush({discos: dummyAlbums});
   });

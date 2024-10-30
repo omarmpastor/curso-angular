@@ -51,7 +51,7 @@ export class AlbumService {
       });
     });
 
-    return this.http.get<IDisco[]>('http://localhost:4200/db.json').pipe(mapAlbums);
+    return this.http.get<IDisco[]>(this.BASE_URL).pipe(mapAlbums);
   }
 
   getOnly(id: number): Observable<IDisco> {
@@ -64,8 +64,8 @@ export class AlbumService {
 
     const mapPistasByAlbumId: OperatorFunction<any,IPista[]> = map((db: IDb) => db.pistas.filter(p => p.discoId == String(id)));
 
-    const album$ = this.http.get<IDisco>('http://localhost:4200/db.json').pipe(mapAlbumById);
-    const pistas$ = this.http.get<IPista[]>('http://localhost:4200/db.json').pipe(mapPistasByAlbumId);
+    const album$ = this.http.get<IDisco>(this.BASE_URL).pipe(mapAlbumById);
+    const pistas$ = this.http.get<IPista[]>(this.BASE_URL).pipe(mapPistasByAlbumId);
 
     const albumWithPistas$ = forkJoin([album$, pistas$]).pipe(map(result => {
       result[0].pistas = result[1];
